@@ -1,0 +1,16 @@
+﻿@model TaskEightViewModel
+@{
+    ViewData["Title"] = "Task Eight";
+}
+
+<div>
+    <div class="text-center">
+        <h1 class="display-4">Задание по спецкурсу №8</h1>
+        <h3>
+            13. Получить список университетов, расположенных в Москве и имеющих рейтинг больший, чем у ВГУ (@Model.Rating). Константу в ограничении на рейтинг
+            можно определить по этой же таблице.
+        </h3>
+    </div>
+    <partial model="Model.Universities" name="_Partials/UniversitiesList" />
+</div>
+

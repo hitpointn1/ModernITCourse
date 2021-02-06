@@ -1,0 +1,12 @@
+﻿@model TaskNineViewModel
+@{
+    ViewData["Title"] = "TaskNine";
+}
+
+<div>
+    <div class="text-center">
+        <h1 class="display-4">Задание по спецкурсу №9</h1>
+        <h3>13. Получить список университетов, в которых учится более @Model.StudentsCount студентов, отсортировать его по рейтингам.</h3>
+    </div>
+    <partial model="Model.Universities" name="_Partials/UniversitiesList" />
+</div>
