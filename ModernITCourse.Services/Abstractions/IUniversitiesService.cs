@@ -1,4 +1,5 @@
 ﻿using ModernITCourse.Services.DomainTransferObjects;
+using System.Threading.Tasks;
 
 namespace ModernITCourse.Services
 {
@@ -6,5 +7,6 @@ namespace ModernITCourse.Services
     {
         UniversityDto[] GetUniversitiesAboveRating(int rating);
         UniversityDto[] GetUniversitiesWithStudentsOverCount(int count);
+        Task UpdateUniversities();
     }
 }

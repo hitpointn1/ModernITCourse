@@ -32,5 +32,6 @@ namespace ModernITCourse.DataAccessLayer
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<SubjectLecturer> SubjectLecturers { get; set; }
         public DbSet<ExamMarks> ExamMarks { get; set; }
+        public DbSet<UpdateInfo> Updates { get; set; }
     }
 }

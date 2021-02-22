@@ -1,0 +1,21 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Task Eight";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            longPoolingModule.init();
+        });
+    </script>
+}
+
+<div>
+    <div class="text-center">
+        <h3>
+            13. Получить список университетов, расположенных в Москве и имеющих рейтинг больший, чем у ВГУ (@Model).
+        </h3>
+    </div>
+    <partial name="_Partials/UniversitiesJS" />
+</div>

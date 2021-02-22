@@ -15,7 +15,8 @@ namespace ModernITCourse.Configuration
             services.ConfigureDataSource(configuration);
             services.AddScoped<IInitService, InitService>();
             services.AddScoped<IUniversitiesService, UniversitiesService>();
-
+            services.AddScoped<IUpdatesService, UpdatesService>();
+            
             return services;
         }
     }
