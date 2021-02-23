@@ -16,6 +16,7 @@ namespace ModernITCourse.Configuration
             services.AddScoped<IInitService, InitService>();
             services.AddScoped<IUniversitiesService, UniversitiesService>();
             services.AddScoped<IUpdatesService, UpdatesService>();
+            services.AddScoped<IExecutionService, ExecutionService>();
             
             return services;
         }

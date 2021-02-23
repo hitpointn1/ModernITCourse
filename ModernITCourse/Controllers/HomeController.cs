@@ -70,6 +70,13 @@ namespace ModernITCourse.Controllers
             return View(VSU_RATING);
         }
 
+        [HttpGet("[action]")]
+        public IActionResult SSEExample()
+        {
+            return View();
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

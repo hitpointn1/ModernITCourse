@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ModernITCourse.Models;
 using ModernITCourse.Services;
 using ModernITCourse.Services.DomainTransferObjects;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ModernITCourse.Controllers
@@ -12,15 +14,18 @@ namespace ModernITCourse.Controllers
     {
         private readonly IUniversitiesService universitiesService;
         private readonly IUpdatesService updatesService;
+        private readonly IExecutionService executionService;
         public const int VSU_RATING = 296;
         public const int ITERATIONS_COUNT = 10;
         public const int MS_DELAY = 3000;
 
         public ApiController(IUniversitiesService universitiesService,
-            IUpdatesService updatesService)
+            IUpdatesService updatesService,
+            IExecutionService executionService)
         {
             this.universitiesService = universitiesService;
             this.updatesService = updatesService;
+            this.executionService = executionService;
         }
 
         [HttpGet("vsu")]
@@ -61,6 +66,28 @@ namespace ModernITCourse.Controllers
                 TimeStamp = update.TimeStamp,
                 Universities = dtos
             };
+        }
+
+        [HttpGet("execute")]
+        public async Task Execute()
+        {
+            Response.ContentType = "text/event-stream";
+            ExecutionDto execution = null;
+            bool start = true;
+            do
+            {
+                execution = executionService.GetStage(start);
+                start = false;
+                if (execution.NeedUpdate)
+                {
+                    await HttpContext.Response.WriteAsync($"data:{JsonSerializer.Serialize(execution)}\n\n");
+                    await HttpContext.Response.Body.FlushAsync();
+                }
+                await Task.Delay(500);
+            }
+            while (!execution.IsFinished);
+
+            Response.Body.Close();
         }
 
     }

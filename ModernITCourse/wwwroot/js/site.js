@@ -41,7 +41,7 @@
     }
 
     function updateUniversities() {
-        $.get('/update');
+        fetch('/update', { method: 'PUT' });
     }
 
     return {

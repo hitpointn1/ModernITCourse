@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 namespace ModernITCourse.Controllers
 {
+    [Route("update/")]
+    [ApiController]
     public class UpdateController : Controller
     {
         private readonly IUniversitiesService universitiesService;
@@ -13,7 +15,15 @@ namespace ModernITCourse.Controllers
             this.universitiesService = universitiesService;
         }
 
-        public async Task<string> Index()
+        [HttpGet]
+        public async Task<string> Get()
+        {
+            await universitiesService.UpdateUniversities();
+            return "Success";
+        }
+
+        [HttpPut]
+        public async Task<string> Put()
         {
             await universitiesService.UpdateUniversities();
             return "Success";
