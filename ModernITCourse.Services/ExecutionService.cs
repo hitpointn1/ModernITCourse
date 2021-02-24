@@ -10,15 +10,15 @@ namespace ModernITCourse.Services
     {
         private static Random _rand = new Random();
         private Queue<ExecutionStages> Stages = new Queue<ExecutionStages>(Enum.GetValues<ExecutionStages>());
-        private ExecutionStages CurrentStage;
+        private ExecutionStages? CurrentStage;
         private DateTime Next;
         public ExecutionService(CourseContext context) : base(context)
         {
         }
 
-        public ExecutionDto GetStage(bool start)
+        public ExecutionDto GetStage()
         {
-            if (start)
+            if (CurrentStage == null)
                 return GoToNext();
 
             if (Next < DateTime.Now)

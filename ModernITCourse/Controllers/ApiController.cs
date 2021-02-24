@@ -72,12 +72,10 @@ namespace ModernITCourse.Controllers
         public async Task Execute()
         {
             Response.ContentType = "text/event-stream";
-            ExecutionDto execution = null;
-            bool start = true;
+            ExecutionDto execution;
             do
             {
-                execution = executionService.GetStage(start);
-                start = false;
+                execution = executionService.GetStage();
                 if (execution.NeedUpdate)
                 {
                     await HttpContext.Response.WriteAsync($"data:{JsonSerializer.Serialize(execution)}\n\n");
